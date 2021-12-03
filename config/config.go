@@ -38,4 +38,5 @@ func InitConfFile() {
 
 func InitConfig()  {
 	InitConfFile()
+	InitGRPClient()
 }

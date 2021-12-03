@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"github.com/gin-gonic/gin"
+	"github.com/qudj/fly_api/config"
 	"log"
 	"net/http"
 	"os"
@@ -13,6 +14,8 @@ import (
 
 func main() {
 	router := gin.Default()
+
+	config.InitConfig()
 
 	initRouter(router)
 
