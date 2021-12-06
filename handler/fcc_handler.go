@@ -31,10 +31,15 @@ func ProjectList(c *gin.Context) {
 		return
 	}
 	req := &fcc_serv.FetchProjectsRequest{
-		Limit:       param.Limit,
-		Offset:      param.Offset,
-		ProjectKey:  param.ProjectKey,
-		ProjectName: param.ProjectName,
+		Limit:  param.Limit,
+		Offset: param.Offset,
+		Filter: map[string]string{},
+	}
+	if param.ProjectKey != "" {
+		req.Filter["project_key"] = param.ProjectKey
+	}
+	if param.ProjectName != "" {
+		req.Filter["project_name"] = param.ProjectName
 	}
 	res, err := config.FccRpcClient.FetchProjects(c, req)
 	if err != nil {
@@ -67,11 +72,16 @@ func GroupList(c *gin.Context) {
 		return
 	}
 	req := &fcc_serv.FetchGroupsRequest{
-		Limit:  param.Limit,
-		Offset: param.Offset,
+		Limit:      param.Limit,
+		Offset:     param.Offset,
 		ProjectKey: param.ProjectKey,
-		GroupKey: param.GroupKey,
-		GroupName: param.GroupName,
+		Filter:     map[string]string{},
+	}
+	if param.GroupKey != "" {
+		req.Filter["group_key"] = param.GroupKey
+	}
+	if param.GroupName != "" {
+		req.Filter["group_name"] = param.GroupName
 	}
 	res, err := config.FccRpcClient.FetchGroups(c, req)
 	if err != nil {
@@ -104,11 +114,14 @@ func ConfigList(c *gin.Context) {
 		return
 	}
 	req := &fcc_serv.FetchConfigsRequest{
-		Limit:  param.Limit,
-		Offset: param.Offset,
+		Limit:      param.Limit,
+		Offset:     param.Offset,
 		ProjectKey: param.ProjectKey,
-		GroupKey: param.GroupKey,
-		ConfKey: param.ConfKey,
+		GroupKey:   param.GroupKey,
+		Filter:     map[string]string{},
+	}
+	if param.ConfKey != "" {
+		req.Filter["conf_key"] = param.ConfKey
 	}
 	res, err := config.FccRpcClient.FetchConfigs(c, req)
 	if err != nil {
@@ -118,8 +131,207 @@ func ConfigList(c *gin.Context) {
 	c.JSON(http.StatusOK, res.Data)
 }
 
-func MiniConfig(c *gin.Context) {
-	// swagger:operation GET /fcc/config/value/ Fcc MiniConfigReq
+func SaveProject(c *gin.Context) {
+	// swagger:operation POST /fcc/project/save/ Fcc GroupListReq
+	//
+	// Get group list
+	//
+	// ---
+	// responses:
+	//   "200":
+	//     description: success
+	//     schema:
+	//       allOf:
+	//       - "$ref": "#/definitions/BaseResponse"
+	//       - type: object
+	//         properties:
+	//           data:
+	//             "$ref": "#/definitions/FetchGroupsRet"
+	//
+	param := &models.GroupListReq{}
+	if err := c.ShouldBindQuery(&param); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	req := &fcc_serv.FetchGroupsRequest{
+		Limit:      param.Limit,
+		Offset:     param.Offset,
+		ProjectKey: param.ProjectKey,
+		Filter:     map[string]string{},
+	}
+	if param.GroupKey != "" {
+		req.Filter["group_key"] = param.GroupKey
+	}
+	if param.GroupName != "" {
+		req.Filter["group_name"] = param.GroupName
+	}
+	res, err := config.FccRpcClient.FetchGroups(c, req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		return
+	}
+	c.JSON(http.StatusOK, res.Data)
+}
+
+func SaveGroup(c *gin.Context) {
+	// swagger:operation POST /fcc/group/save/ Fcc GroupListReq
+	//
+	// Get group list
+	//
+	// ---
+	// responses:
+	//   "200":
+	//     description: success
+	//     schema:
+	//       allOf:
+	//       - "$ref": "#/definitions/BaseResponse"
+	//       - type: object
+	//         properties:
+	//           data:
+	//             "$ref": "#/definitions/FetchGroupsRet"
+	//
+	param := &models.GroupListReq{}
+	if err := c.ShouldBindQuery(&param); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	req := &fcc_serv.FetchGroupsRequest{
+		Limit:      param.Limit,
+		Offset:     param.Offset,
+		ProjectKey: param.ProjectKey,
+		Filter:     map[string]string{},
+	}
+	if param.GroupKey != "" {
+		req.Filter["group_key"] = param.GroupKey
+	}
+	if param.GroupName != "" {
+		req.Filter["group_name"] = param.GroupName
+	}
+	res, err := config.FccRpcClient.FetchGroups(c, req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		return
+	}
+	c.JSON(http.StatusOK, res.Data)
+}
+
+func SaveConfig(c *gin.Context) {
+	// swagger:operation POST /fcc/config/save/ Fcc GroupListReq
+	//
+	// Get group list
+	//
+	// ---
+	// responses:
+	//   "200":
+	//     description: success
+	//     schema:
+	//       allOf:
+	//       - "$ref": "#/definitions/BaseResponse"
+	//       - type: object
+	//         properties:
+	//           data:
+	//             "$ref": "#/definitions/FetchGroupsRet"
+	//
+	param := &models.GroupListReq{}
+	if err := c.ShouldBindQuery(&param); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	req := &fcc_serv.FetchGroupsRequest{
+		Limit:      param.Limit,
+		Offset:     param.Offset,
+		ProjectKey: param.ProjectKey,
+		Filter:     map[string]string{},
+	}
+	if param.GroupKey != "" {
+		req.Filter["group_key"] = param.GroupKey
+	}
+	if param.GroupName != "" {
+		req.Filter["group_name"] = param.GroupName
+	}
+	res, err := config.FccRpcClient.FetchGroups(c, req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		return
+	}
+	c.JSON(http.StatusOK, res.Data)
+}
+
+func PrePublish(c *gin.Context) {
+	// swagger:operation POST /fcc/config/pre_publish/ Fcc GroupListReq
+	//
+	// Get group list
+	//
+	// ---
+	// responses:
+	//   "200":
+	//     description: success
+	//     schema:
+	//       allOf:
+	//       - "$ref": "#/definitions/BaseResponse"
+	//       - type: object
+	//         properties:
+	//           data:
+	//             "$ref": "#/definitions/FetchGroupsRet"
+	//
+	param := &models.PrePublishReq{}
+	if err := c.ShouldBindQuery(&param); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	req := &fcc_serv.PrePublishRequest{
+		ProjectKey: param.ProjectKey,
+		GroupKey:   param.GroupKey,
+		ConfKey:    param.ConfKey,
+		PreValue:   param.PreValue,
+		OpId:       "qudongjie",
+	}
+	res, err := config.FccRpcClient.PrePublish(c, req)
+	if err != nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		return
+	}
+	c.JSON(http.StatusOK, "")
+}
+
+func Publish(c *gin.Context) {
+	// swagger:operation POST /fcc/config/publish/ Fcc PublishReq
+	//
+	// publish config
+	//
+	// ---
+	// responses:
+	//   "200":
+	//     description: success
+	//     schema:
+	//       allOf:
+	//       - "$ref": "#/definitions/BaseResponse"
+	//       - type: object
+	//         properties:
+	//           data:
+	//             "$ref": "#/definitions/FetchGroupsRet"
+	//
+	param := &models.PublishReq{}
+	if err := c.ShouldBindQuery(&param); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	req := &fcc_serv.PublishRequest{
+		ProjectKey: param.ProjectKey,
+		GroupKey:   param.GroupKey,
+		ConfKey:    param.ConfKey,
+		OpId:       "qudongjie",
+	}
+	res, err := config.FccRpcClient.Publish(c, req)
+	if err != nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		return
+	}
+	c.JSON(http.StatusOK, "")
+}
+
+func GetConfig(c *gin.Context) {
+	// swagger:operation GET /fcc/config/value/ Fcc GetConfigReq
 	//
 	// Get project list
 	//
@@ -135,17 +347,17 @@ func MiniConfig(c *gin.Context) {
 	//           data:
 	//             "$ref": "#/definitions/MiniConfig"
 	//
-	param := &models.MiniConfigReq{}
+	param := &models.GetConfigReq{}
 	if err := c.ShouldBindQuery(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchMiniConfigRequest{
+	req := &fcc_serv.FetchConfigRequest{
 		ProjectKey: param.ProjectKey,
-		GroupKey: param.GroupKey,
-		ConfKey: param.ConfKey,
+		GroupKey:   param.GroupKey,
+		ConfKey:    param.ConfKey,
 	}
-	res, err := config.FccRpcClient.FetchMiniConfig(c, req)
+	res, err := config.FccRpcClient.FetchConfig(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
 		return

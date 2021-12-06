@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-gonic/gin v1.7.7
-	github.com/qudj/fly_lib v0.0.0-20211206063557-9a140cf3fe99
+	github.com/qudj/fly_lib v0.0.0-20211206144445-097f9fda72cf
 	github.com/spf13/viper v1.9.0
 	google.golang.org/grpc v1.42.0
 )

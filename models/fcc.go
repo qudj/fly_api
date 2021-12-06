@@ -29,9 +29,48 @@ type ConfigListReq struct {
 	ConfKey    string `json:"conf_key" form:"conf_key"`
 }
 
-// swagger:parameters ConfigListReq
-type MiniConfigReq struct {
+// swagger:parameters GetConfigReq
+type GetConfigReq struct {
 	// in:query
+	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
+	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+}
+
+// swagger:parameters SaveProjectReq
+type SaveProjectReq struct {
+	// in:query
+	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
+	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+}
+
+// swagger:parameters SaveGroupReq
+type SaveGroupReq struct {
+	// in:query
+	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
+	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+}
+
+// swagger:parameters SaveConfigReq
+type SaveConfigReq struct {
+	// in:query
+	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
+	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+}
+
+// swagger:parameters PrePublishReq
+type PrePublishReq struct {
+	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
+	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+	PreValue    string `json:"pre_value" form:"pre_value" binding:"required"`
+}
+
+// swagger:parameters PublishReq
+type PublishReq struct {
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
 	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`

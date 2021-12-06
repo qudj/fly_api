@@ -275,6 +275,10 @@ github.com/qudj/fly_lib v0.0.0-20211206060348-2e46d076e0d7 h1:fkzFZxAkudibRl8x0o
 github.com/qudj/fly_lib v0.0.0-20211206060348-2e46d076e0d7/go.mod h1:2tuBBofcsINAXbvu8IgOWzP5oROzA5YxhmoCFpugQfM=
 github.com/qudj/fly_lib v0.0.0-20211206063557-9a140cf3fe99 h1:LdE3bAOrgh66M98t4kjn7ObwIssaeAJf/35cVoWFcTE=
 github.com/qudj/fly_lib v0.0.0-20211206063557-9a140cf3fe99/go.mod h1:2tuBBofcsINAXbvu8IgOWzP5oROzA5YxhmoCFpugQfM=
+github.com/qudj/fly_lib v0.0.0-20211206143037-b77720c99395 h1:jNSuuj3B1Zj7Jsm6uUv8P06qmx7NKOJDFuBMJqNE/ME=
+github.com/qudj/fly_lib v0.0.0-20211206143037-b77720c99395/go.mod h1:2tuBBofcsINAXbvu8IgOWzP5oROzA5YxhmoCFpugQfM=
+github.com/qudj/fly_lib v0.0.0-20211206144445-097f9fda72cf h1:gLq+U8LsFN1NEjbcpcToH5zffX4vc59n3MUouqsBsyE=
+github.com/qudj/fly_lib v0.0.0-20211206144445-097f9fda72cf/go.mod h1:2tuBBofcsINAXbvu8IgOWzP5oROzA5YxhmoCFpugQfM=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/ryanuber/columnize v0.0.0-20160712163229-9b3edd62028f/go.mod h1:sm1tb6uqfes/u+d4ooFouqFdy9/2g9QGwK3SQygK0Ts=

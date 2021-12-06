@@ -25,7 +25,15 @@ func initRouter(r *gin.Engine) {
 		fcc.GET("/project/list/", handler.ProjectList)
 		fcc.GET("/group/list/", handler.GroupList)
 		fcc.GET("/config/list/", handler.ConfigList)
-		fcc.GET("/config/value", handler.MiniConfig)
+
+		fcc.POST("/project/save/", handler.SaveProject)
+		fcc.POST("/group/save/", handler.SaveGroup)
+		fcc.POST("/config/save/", handler.SaveConfig)
+
+		fcc.POST("/config/pre_publish/", handler.PrePublish)
+		fcc.POST("/config/publish/", handler.Publish)
+
+		fcc.GET("/config/value", handler.GetConfig)
 	}
 }
 
