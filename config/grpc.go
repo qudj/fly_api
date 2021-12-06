@@ -1,13 +1,13 @@
 package config
 
 import (
-	"github.com/qudj/fly_lib/models/fly_conf"
+	"github.com/qudj/fly_lib/models/proto/fcc_serv"
 	"google.golang.org/grpc"
 )
 
 
 var (
-	FccRpcClient  fly_conf.FccServiceClient
+	FccRpcClient  fcc_serv.FccServiceClient
 )
 
 func InitGRPClient() {
@@ -15,5 +15,5 @@ func InitGRPClient() {
 	if err != nil {
 		panic(err)
 	}
-	FccRpcClient = fly_conf.NewFccServiceClient(conn)
+	FccRpcClient = fcc_serv.NewFccServiceClient(conn)
 }
