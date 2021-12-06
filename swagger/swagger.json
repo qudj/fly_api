@@ -1,0 +1,544 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/fcc/config/list/": {
+      "get": {
+        "description": "Get config list",
+        "tags": [
+          "Fcc"
+        ],
+        "operationId": "ConfigListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupKey",
+            "name": "group_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ConfKey",
+            "name": "conf_key",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchConfigsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/fcc/config/value/": {
+      "get": {
+        "description": "Get project list",
+        "tags": [
+          "Fcc"
+        ],
+        "operationId": "MiniConfigReq",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/MiniConfig"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/fcc/group/list/": {
+      "get": {
+        "description": "Get group list",
+        "tags": [
+          "Fcc"
+        ],
+        "operationId": "GroupListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupKey",
+            "name": "group_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupName",
+            "name": "group_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchGroupsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/fcc/project/list/": {
+      "get": {
+        "description": "Get project list",
+        "tags": [
+          "Fcc"
+        ],
+        "operationId": "ProjectListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectName",
+            "name": "project_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchProjectsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "BaseResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "message": {
+          "type": "string",
+          "x-go-name": "Message"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_api/responses"
+    },
+    "BaseRet": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "Config": {
+      "type": "object",
+      "properties": {
+        "conf_key": {
+          "type": "string",
+          "x-go-name": "ConfKey"
+        },
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "pre_value": {
+          "type": "string",
+          "x-go-name": "PreValue"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        },
+        "value": {
+          "type": "string",
+          "x-go-name": "Value"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchConfigsRequest": {
+      "type": "object",
+      "properties": {
+        "conf_key": {
+          "type": "string",
+          "x-go-name": "ConfKey"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Offset"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchConfigsResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/FetchConfigsRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchConfigsRet": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Config"
+          },
+          "x-go-name": "List"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchGroupsRequest": {
+      "type": "object",
+      "properties": {
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "group_name": {
+          "type": "string",
+          "x-go-name": "GroupName"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Offset"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchGroupsResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/FetchGroupsRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchGroupsRet": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Group"
+          },
+          "x-go-name": "List"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchMiniConfigRequest": {
+      "type": "object",
+      "properties": {
+        "conf_key": {
+          "type": "string",
+          "x-go-name": "ConfKey"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchMiniConfigResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/MiniConfig"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchProjectsRequest": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Offset"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "project_name": {
+          "type": "string",
+          "x-go-name": "ProjectName"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchProjectsResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/FetchProjectsRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchProjectsRet": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Project"
+          },
+          "x-go-name": "List"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "Group": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "group_name": {
+          "type": "string",
+          "x-go-name": "GroupName"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "MiniConfig": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "x-go-name": "Value"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "project_name": {
+          "type": "string",
+          "x-go-name": "ProjectName"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    }
+  }
+}

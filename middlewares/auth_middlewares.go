@@ -12,7 +12,7 @@ func AuthRequired(c *gin.Context) {
 	user := session.Get(config.UserKey)
 	if user == nil {
 		// Abort the request with the appropriate error code
-		c.JSON(400, "")
+		c.AbortWithStatusJSON(400, map[string]string{"msg":"not auth"})
 		return
 	}
 	// Continue down the chain to handler etc

@@ -1,0 +1,1 @@
+swagger generate spec -m -o swagger/swagger.json

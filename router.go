@@ -14,15 +14,19 @@ func initRouter(r *gin.Engine) {
 
 	r.GET("health_check", healthCheck)
 
-	fcc := r.Group("/fcc")
-	fcc.Use(middlewares.AuthRequired)
 	{
-		fcc.GET("/project/list", handler.ProjectList)
-		fcc.GET("/group/list", handler.GroupList)
-		fcc.GET("/config/list", handler.ConfigList)
-		fcc.GET("/config", handler.MiniConfig)
+		r.Static("doc/swagger_ui", "./swagger_ui")
+		r.Static("doc/swagger", "./swagger")
 	}
 
+	fcc := r.Group("/fcc")
+	//fcc.Use(middlewares.AuthRequired)
+	{
+		fcc.GET("/project/list/", handler.ProjectList)
+		fcc.GET("/group/list/", handler.GroupList)
+		fcc.GET("/config/list/", handler.ConfigList)
+		fcc.GET("/config/value", handler.MiniConfig)
+	}
 }
 
 func healthCheck(ctx *gin.Context) {
