@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/qudj/fly_api/config"
 	"github.com/qudj/fly_api/models"
@@ -132,11 +133,16 @@ func ConfigList(c *gin.Context) {
 }
 
 func SaveProject(c *gin.Context) {
-	// swagger:operation POST /fcc/project/save/ Fcc GroupListReq
+	// swagger:operation POST /fcc/project/save/ Fcc CommonReq
 	//
 	// Get group list
 	//
 	// ---
+	// parameters:
+	// - in: body
+	//   name: body
+	//   schema:
+	//     "$ref": "#/definitions/SaveProjectReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -148,37 +154,43 @@ func SaveProject(c *gin.Context) {
 	//           data:
 	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
-	param := &models.GroupListReq{}
-	if err := c.ShouldBindQuery(&param); err != nil {
+	param := &models.SaveProjectReq{}
+	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchGroupsRequest{
-		Limit:      param.Limit,
-		Offset:     param.Offset,
-		ProjectKey: param.ProjectKey,
-		Filter:     map[string]string{},
+	req := &fcc_serv.SaveProjectRequest{
+		Project: &fcc_serv.Project{
+			ProjectKey:  param.ProjectKey,
+			ProjectName: param.ProjectName,
+			Description: param.Description,
+			Status:      param.Status,
+		},
+		OpId: "qudongjie",
 	}
-	if param.GroupKey != "" {
-		req.Filter["group_key"] = param.GroupKey
-	}
-	if param.GroupName != "" {
-		req.Filter["group_name"] = param.GroupName
-	}
-	res, err := config.FccRpcClient.FetchGroups(c, req)
+	res, err := config.FccRpcClient.SaveProject(c, req)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, res.Data)
+	if res == nil || res.BaseRet == nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("res=%+v", res))
+		return
+	}
+	c.JSON(http.StatusOK, "")
 }
 
 func SaveGroup(c *gin.Context) {
-	// swagger:operation POST /fcc/group/save/ Fcc GroupListReq
+	// swagger:operation POST /fcc/group/save/ Fcc CommonReq
 	//
 	// Get group list
 	//
 	// ---
+	// parameters:
+	// - in: body
+	//   name: body
+	//   schema:
+	//     "$ref": "#/definitions/SaveGroupReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -188,39 +200,45 @@ func SaveGroup(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
-	param := &models.GroupListReq{}
-	if err := c.ShouldBindQuery(&param); err != nil {
+	param := &models.SaveGroupReq{}
+	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchGroupsRequest{
-		Limit:      param.Limit,
-		Offset:     param.Offset,
-		ProjectKey: param.ProjectKey,
-		Filter:     map[string]string{},
+	req := &fcc_serv.SaveGroupRequest{
+		Group: &fcc_serv.Group{
+			ProjectKey:  param.ProjectKey,
+			GroupKey:    param.GroupKey,
+			GroupName:   param.GroupName,
+			Description: param.Description,
+			Status:      param.Status,
+		},
+		OpId: "qudongjie",
 	}
-	if param.GroupKey != "" {
-		req.Filter["group_key"] = param.GroupKey
-	}
-	if param.GroupName != "" {
-		req.Filter["group_name"] = param.GroupName
-	}
-	res, err := config.FccRpcClient.FetchGroups(c, req)
+	res, err := config.FccRpcClient.SaveGroup(c, req)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, res.Data)
+	if res == nil || res.BaseRet == nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("res=%+v", res))
+		return
+	}
+	c.JSON(http.StatusOK, "")
 }
 
 func SaveConfig(c *gin.Context) {
-	// swagger:operation POST /fcc/config/save/ Fcc GroupListReq
+	// swagger:operation POST /fcc/config/save/ Fcc CommonReq
 	//
 	// Get group list
 	//
 	// ---
+	// parameters:
+	// - in: body
+	//   name: body
+	//   schema:
+	//     "$ref": "#/definitions/SaveConfigReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -230,39 +248,45 @@ func SaveConfig(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
-	param := &models.GroupListReq{}
-	if err := c.ShouldBindQuery(&param); err != nil {
+	param := &models.SaveConfigReq{}
+	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchGroupsRequest{
-		Limit:      param.Limit,
-		Offset:     param.Offset,
-		ProjectKey: param.ProjectKey,
-		Filter:     map[string]string{},
+	req := &fcc_serv.SaveConfigRequest{
+		Config: &fcc_serv.Config{
+			ProjectKey:  param.ProjectKey,
+			GroupKey:    param.GroupKey,
+			ConfKey:     param.ConfKey,
+			Description: param.Description,
+			Status:      param.Status,
+		},
+		OpId: "qudongjie",
 	}
-	if param.GroupKey != "" {
-		req.Filter["group_key"] = param.GroupKey
-	}
-	if param.GroupName != "" {
-		req.Filter["group_name"] = param.GroupName
-	}
-	res, err := config.FccRpcClient.FetchGroups(c, req)
+	res, err := config.FccRpcClient.SaveConfig(c, req)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, res.Data)
+	if res == nil || res.BaseRet == nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("res=%+v", res))
+		return
+	}
+	c.JSON(http.StatusOK, "")
 }
 
 func PrePublish(c *gin.Context) {
-	// swagger:operation POST /fcc/config/pre_publish/ Fcc GroupListReq
+	// swagger:operation POST /fcc/config/pre_publish/ Fcc CommonReq
 	//
 	// Get group list
 	//
 	// ---
+	// parameters:
+	// - in: body
+	//   name: body
+	//   schema:
+	//     "$ref": "#/definitions/PrePublishReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -275,7 +299,7 @@ func PrePublish(c *gin.Context) {
 	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
 	param := &models.PrePublishReq{}
-	if err := c.ShouldBindQuery(&param); err != nil {
+	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
@@ -287,19 +311,28 @@ func PrePublish(c *gin.Context) {
 		OpId:       "qudongjie",
 	}
 	res, err := config.FccRpcClient.PrePublish(c, req)
-	if err != nil || res.BaseRet.Code != 0 {
-		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	if res == nil || res.BaseRet == nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("res=%+v", res))
 		return
 	}
 	c.JSON(http.StatusOK, "")
 }
 
 func Publish(c *gin.Context) {
-	// swagger:operation POST /fcc/config/publish/ Fcc PublishReq
+	// swagger:operation POST /fcc/config/publish/ Fcc CommonReq
 	//
 	// publish config
 	//
 	// ---
+	// parameters:
+	// - in: body
+	//   name: body
+	//   schema:
+	//     "$ref": "#/definitions/PublishReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -309,10 +342,9 @@ func Publish(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
 	param := &models.PublishReq{}
-	if err := c.ShouldBindQuery(&param); err != nil {
+	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
@@ -323,8 +355,12 @@ func Publish(c *gin.Context) {
 		OpId:       "qudongjie",
 	}
 	res, err := config.FccRpcClient.Publish(c, req)
-	if err != nil || res.BaseRet.Code != 0 {
-		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	if res == nil || res.BaseRet == nil || res.BaseRet.Code != 0 {
+		c.JSON(http.StatusBadRequest, fmt.Sprintf("res=%+v", res))
 		return
 	}
 	c.JSON(http.StatusOK, "")
@@ -345,7 +381,7 @@ func GetConfig(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/MiniConfig"
+	//             "$ref": "#/definitions/Config"
 	//
 	param := &models.GetConfigReq{}
 	if err := c.ShouldBindQuery(&param); err != nil {
@@ -359,7 +395,7 @@ func GetConfig(c *gin.Context) {
 	}
 	res, err := config.FccRpcClient.FetchConfig(c, req)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, res.Data)

@@ -37,39 +37,41 @@ type GetConfigReq struct {
 	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
 }
 
-// swagger:parameters SaveProjectReq
+// swagger:model SaveProjectReq
 type SaveProjectReq struct {
-	// in:query
-	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
-	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
-	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+	ProjectKey  string `json:"project_key" form:"project_key" binding:"required"`
+	ProjectName string `json:"project_name" form:"project_name"`
+	Description string `json:"description,omitempty" form:"description"`
+	Status      int64  `json:"status,omitempty" form:"status"`
 }
 
-// swagger:parameters SaveGroupReq
+// swagger:model SaveGroupReq
 type SaveGroupReq struct {
-	// in:query
-	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
-	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
-	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+	ProjectKey  string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey    string `json:"group_key" form:"group_key" binding:"required"`
+	GroupName   string `json:"group_name,omitempty" form:"group_name"`
+	Description string `json:"description,omitempty" form:"description"`
+	Status      int64  `json:"status,omitempty" form:"status"`
 }
 
-// swagger:parameters SaveConfigReq
+// swagger:model SaveConfigReq
 type SaveConfigReq struct {
-	// in:query
-	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
-	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
-	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
+	ProjectKey  string `json:"project_key" form:"project_key" binding:"required"`
+	GroupKey    string `json:"group_key" form:"group_key" binding:"required"`
+	ConfKey     string `json:"conf_key" form:"conf_key" binding:"required"`
+	Description string `json:"description,omitempty" form:"description"`
+	Status      int64  `json:"status,omitempty" form:"status"`
 }
 
-// swagger:parameters PrePublishReq
+// swagger:model PrePublishReq
 type PrePublishReq struct {
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
 	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
-	PreValue    string `json:"pre_value" form:"pre_value" binding:"required"`
+	PreValue   string `json:"pre_value" form:"pre_value" binding:"required"`
 }
 
-// swagger:parameters PublishReq
+// swagger:model PublishReq
 type PublishReq struct {
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
