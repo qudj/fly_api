@@ -5,12 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/qudj/fly_api/config"
 	"github.com/qudj/fly_api/models"
-	"github.com/qudj/fly_lib/models/proto/fcc_serv"
+	servbp "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
 	"net/http"
 )
 
-func FccProjectList(c *gin.Context) {
-	// swagger:operation GET /fcc/project/list/ Fcc FccProjectListReq
+func StarlingProjectList(c *gin.Context) {
+	// swagger:operation GET /starling/project/list/ Starling StarlingProjectListReq
 	//
 	// Get project list
 	//
@@ -26,12 +26,12 @@ func FccProjectList(c *gin.Context) {
 	//           data:
 	//             "$ref": "#/definitions/FetchProjectsRet"
 	//
-	param := &models.FccProjectListReq{}
+	param := &models.StarlingProjectListReq{}
 	if err := c.ShouldBindQuery(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchProjectsRequest{
+	req := &servbp.FetchProjectsRequest{
 		Limit:  param.Limit,
 		Offset: param.Offset,
 		Filter: map[string]string{},
@@ -42,7 +42,7 @@ func FccProjectList(c *gin.Context) {
 	if param.ProjectName != "" {
 		req.Filter["project_name"] = param.ProjectName
 	}
-	res, err := config.FccRpcClient.FetchProjects(c, req)
+	res, err := config.StarlingRpcClient.FetchProjects(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
@@ -50,8 +50,8 @@ func FccProjectList(c *gin.Context) {
 	c.JSON(0, res.Data)
 }
 
-func FccGroupList(c *gin.Context) {
-	// swagger:operation GET /fcc/group/list/ Fcc FccGroupListReq
+func StarlingGroupList(c *gin.Context) {
+	// swagger:operation GET /starling/group/list/ Starling StarlingGroupListReq
 	//
 	// Get group list
 	//
@@ -67,12 +67,12 @@ func FccGroupList(c *gin.Context) {
 	//           data:
 	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
-	param := &models.FccGroupListReq{}
+	param := &models.StarlingGroupListReq{}
 	if err := c.ShouldBindQuery(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchGroupsRequest{
+	req := &servbp.FetchGroupsRequest{
 		Limit:      param.Limit,
 		Offset:     param.Offset,
 		ProjectKey: param.ProjectKey,
@@ -84,7 +84,7 @@ func FccGroupList(c *gin.Context) {
 	if param.GroupName != "" {
 		req.Filter["group_name"] = param.GroupName
 	}
-	res, err := config.FccRpcClient.FetchGroups(c, req)
+	res, err := config.StarlingRpcClient.FetchGroups(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
 		return
@@ -92,8 +92,8 @@ func FccGroupList(c *gin.Context) {
 	c.JSON(http.StatusOK, res.Data)
 }
 
-func FccConfigList(c *gin.Context) {
-	// swagger:operation GET /fcc/config/list/ Fcc FccConfigListReq
+func StarlingOriginLgList(c *gin.Context) {
+	// swagger:operation GET /starling/origin/list/ Starling StarlingOriginLgListReq
 	//
 	// Get config list
 	//
@@ -107,24 +107,24 @@ func FccConfigList(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/FetchConfigsRet"
+	//             "$ref": "#/definitions/FetchOriginLgsRet"
 	//
-	param := &models.FccConfigListReq{}
+	param := &models.StarlingOriginLgListReq{}
 	if err := c.ShouldBindQuery(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchConfigsRequest{
+	req := &servbp.FetchOriginLgsRequest{
 		Limit:      param.Limit,
 		Offset:     param.Offset,
 		ProjectKey: param.ProjectKey,
 		GroupKey:   param.GroupKey,
 		Filter:     map[string]string{},
 	}
-	if param.ConfKey != "" {
-		req.Filter["conf_key"] = param.ConfKey
+	if param.LangKey != "" {
+		req.Filter["lang_key"] = param.LangKey
 	}
-	res, err := config.FccRpcClient.FetchConfigs(c, req)
+	res, err := config.StarlingRpcClient.FetchOriginLgs(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
 		return
@@ -132,8 +132,46 @@ func FccConfigList(c *gin.Context) {
 	c.JSON(http.StatusOK, res.Data)
 }
 
-func FccSaveProject(c *gin.Context) {
-	// swagger:operation POST /fcc/project/save/ Fcc CommonReq
+func StarlingTransLgList(c *gin.Context) {
+	// swagger:operation GET /starling/translation/list/ Starling StarlingTransLgListReq
+	//
+	// Get config list
+	//
+	// ---
+	// responses:
+	//   "200":
+	//     description: success
+	//     schema:
+	//       allOf:
+	//       - "$ref": "#/definitions/BaseResponse"
+	//       - type: object
+	//         properties:
+	//           data:
+	//             "$ref": "#/definitions/FetchTransLgsRet"
+	//
+	param := &models.StarlingTransLgListReq{}
+	if err := c.ShouldBindQuery(&param); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	req := &servbp.FetchTransLgsRequest{
+		Limit:      param.Limit,
+		Offset:     param.Offset,
+		ProjectKey: param.ProjectKey,
+		GroupKey:   param.GroupKey,
+		LangKey:    param.LangKey,
+		Filter:     map[string]string{},
+	}
+	res, err := config.StarlingRpcClient.FetchTransLgs(c, req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, map[string]string{"msg": "ok"})
+		return
+	}
+	c.JSON(http.StatusOK, res.Data)
+}
+
+func StarlingSaveProject(c *gin.Context) {
+	// swagger:operation POST /starling/project/save/ Starling CommonReq
 	//
 	// Get group list
 	//
@@ -142,7 +180,7 @@ func FccSaveProject(c *gin.Context) {
 	// - in: body
 	//   name: body
 	//   schema:
-	//     "$ref": "#/definitions/FccSaveProjectReq"
+	//     "$ref": "#/definitions/StarlingSaveProjectReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -154,13 +192,13 @@ func FccSaveProject(c *gin.Context) {
 	//           data:
 	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
-	param := &models.FccSaveProjectReq{}
+	param := &models.StarlingSaveProjectReq{}
 	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.SaveProjectRequest{
-		Project: &fcc_serv.Project{
+	req := &servbp.SaveProjectRequest{
+		Project: &servbp.Project{
 			ProjectKey:  param.ProjectKey,
 			ProjectName: param.ProjectName,
 			Description: param.Description,
@@ -168,7 +206,7 @@ func FccSaveProject(c *gin.Context) {
 		},
 		OpId: "qudongjie",
 	}
-	res, err := config.FccRpcClient.SaveProject(c, req)
+	res, err := config.StarlingRpcClient.SaveProject(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
@@ -180,8 +218,8 @@ func FccSaveProject(c *gin.Context) {
 	c.JSON(http.StatusOK, "")
 }
 
-func FccSaveGroup(c *gin.Context) {
-	// swagger:operation POST /fcc/group/save/ Fcc CommonReq
+func StarlingSaveGroup(c *gin.Context) {
+	// swagger:operation POST /starling/group/save/ Starling CommonReq
 	//
 	// Get group list
 	//
@@ -190,7 +228,7 @@ func FccSaveGroup(c *gin.Context) {
 	// - in: body
 	//   name: body
 	//   schema:
-	//     "$ref": "#/definitions/FccSaveGroupReq"
+	//     "$ref": "#/definitions/StarlingSaveGroupReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -201,13 +239,13 @@ func FccSaveGroup(c *gin.Context) {
 	//         properties:
 	//           data:
 	//
-	param := &models.FccSaveGroupReq{}
+	param := &models.StarlingSaveGroupReq{}
 	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.SaveGroupRequest{
-		Group: &fcc_serv.Group{
+	req := &servbp.SaveGroupRequest{
+		Group: &servbp.Group{
 			ProjectKey:  param.ProjectKey,
 			GroupKey:    param.GroupKey,
 			GroupName:   param.GroupName,
@@ -216,7 +254,7 @@ func FccSaveGroup(c *gin.Context) {
 		},
 		OpId: "qudongjie",
 	}
-	res, err := config.FccRpcClient.SaveGroup(c, req)
+	res, err := config.StarlingRpcClient.SaveGroup(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
@@ -228,8 +266,8 @@ func FccSaveGroup(c *gin.Context) {
 	c.JSON(http.StatusOK, "")
 }
 
-func FccSaveConfig(c *gin.Context) {
-	// swagger:operation POST /fcc/config/save/ Fcc CommonReq
+func StarlingSaveOriginLg(c *gin.Context) {
+	// swagger:operation POST /starling/origin/save/ Starling CommonReq
 	//
 	// Get group list
 	//
@@ -238,7 +276,7 @@ func FccSaveConfig(c *gin.Context) {
 	// - in: body
 	//   name: body
 	//   schema:
-	//     "$ref": "#/definitions/FccSaveConfigReq"
+	//     "$ref": "#/definitions/StarlingSaveOriginLgReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -249,22 +287,23 @@ func FccSaveConfig(c *gin.Context) {
 	//         properties:
 	//           data:
 	//
-	param := &models.FccSaveConfigReq{}
+	param := &models.StarlingSaveOriginLgReq{}
 	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.SaveConfigRequest{
-		Config: &fcc_serv.Config{
-			ProjectKey:  param.ProjectKey,
-			GroupKey:    param.GroupKey,
-			ConfKey:     param.ConfKey,
-			Description: param.Description,
-			Status:      param.Status,
+	req := &servbp.SaveOriginLgRequest{
+		OriginLang: &servbp.OriginLg{
+			ProjectKey: param.ProjectKey,
+			GroupKey:   param.GroupKey,
+			LangKey:    param.LangKey,
+			Lang:       param.Lang,
+			OriginText: param.OriginText,
+			Status:     param.Status,
 		},
 		OpId: "qudongjie",
 	}
-	res, err := config.FccRpcClient.SaveConfig(c, req)
+	res, err := config.StarlingRpcClient.SaveOriginLg(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
@@ -276,8 +315,8 @@ func FccSaveConfig(c *gin.Context) {
 	c.JSON(http.StatusOK, "")
 }
 
-func FccPrePublish(c *gin.Context) {
-	// swagger:operation POST /fcc/config/pre_publish/ Fcc CommonReq
+func StarlingSaveTransLg(c *gin.Context) {
+	// swagger:operation POST /starling/translate/save/ Starling CommonReq
 	//
 	// Get group list
 	//
@@ -286,7 +325,7 @@ func FccPrePublish(c *gin.Context) {
 	// - in: body
 	//   name: body
 	//   schema:
-	//     "$ref": "#/definitions/FccPrePublishReq"
+	//     "$ref": "#/definitions/StarlingSaveTransLgReq"
 	// responses:
 	//   "200":
 	//     description: success
@@ -296,21 +335,24 @@ func FccPrePublish(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/FetchGroupsRet"
 	//
-	param := &models.FccPrePublishReq{}
+	param := &models.StarlingSaveTransLgReq{}
 	if err := c.ShouldBindJSON(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.PrePublishRequest{
-		ProjectKey: param.ProjectKey,
-		GroupKey:   param.GroupKey,
-		ConfKey:    param.ConfKey,
-		PreValue:   param.PreValue,
-		OpId:       "qudongjie",
+	req := &servbp.SaveTransLgRequest{
+		TransLang: &servbp.TransLg{
+			ProjectKey:    param.ProjectKey,
+			GroupKey:      param.GroupKey,
+			LangKey:       param.LangKey,
+			Lang:          param.Lang,
+			TranslateText: param.TranslateText,
+			Status:        param.Status,
+		},
+		OpId: "qudongjie",
 	}
-	res, err := config.FccRpcClient.PrePublish(c, req)
+	res, err := config.StarlingRpcClient.SaveTransLg(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
@@ -322,52 +364,8 @@ func FccPrePublish(c *gin.Context) {
 	c.JSON(http.StatusOK, "")
 }
 
-func FccPublish(c *gin.Context) {
-	// swagger:operation POST /fcc/config/publish/ Fcc CommonReq
-	//
-	// publish config
-	//
-	// ---
-	// parameters:
-	// - in: body
-	//   name: body
-	//   schema:
-	//     "$ref": "#/definitions/FccPublishReq"
-	// responses:
-	//   "200":
-	//     description: success
-	//     schema:
-	//       allOf:
-	//       - "$ref": "#/definitions/BaseResponse"
-	//       - type: object
-	//         properties:
-	//           data:
-	//
-	param := &models.FccPublishReq{}
-	if err := c.ShouldBindJSON(&param); err != nil {
-		c.JSON(http.StatusBadRequest, err.Error())
-		return
-	}
-	req := &fcc_serv.PublishRequest{
-		ProjectKey: param.ProjectKey,
-		GroupKey:   param.GroupKey,
-		ConfKey:    param.ConfKey,
-		OpId:       "qudongjie",
-	}
-	res, err := config.FccRpcClient.Publish(c, req)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, err.Error())
-		return
-	}
-	if res == nil || res.BaseRet == nil || res.BaseRet.Code != 0 {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("res=%+v", res))
-		return
-	}
-	c.JSON(http.StatusOK, "")
-}
-
-func FccGetConfig(c *gin.Context) {
-	// swagger:operation GET /fcc/config/value/ Fcc FccGetConfigReq
+func StarlingGetTranslation(c *gin.Context) {
+	// swagger:operation GET /starling/translation/ Starling StarlingGetTransLgReq
 	//
 	// Get project list
 	//
@@ -381,19 +379,20 @@ func FccGetConfig(c *gin.Context) {
 	//       - type: object
 	//         properties:
 	//           data:
-	//             "$ref": "#/definitions/Config"
+	//             "$ref": "#/definitions/TransLg"
 	//
-	param := &models.FccGetConfigReq{}
+	param := &models.StarlingGetTransLgReq{}
 	if err := c.ShouldBindQuery(&param); err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &fcc_serv.FetchConfigRequest{
+	req := &servbp.FetchTransLgRequest{
 		ProjectKey: param.ProjectKey,
 		GroupKey:   param.GroupKey,
-		ConfKey:    param.ConfKey,
+		LangKey:    param.LangKey,
+		Lang:       param.Lang,
 	}
-	res, err := config.FccRpcClient.FetchConfig(c, req)
+	res, err := config.StarlingRpcClient.FetchTransLg(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return

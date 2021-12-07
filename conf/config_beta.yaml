@@ -1,2 +1,3 @@
 host:
   fcc_rpc_host: localhost:50052
+  starling_rpc_host: localhost:50053

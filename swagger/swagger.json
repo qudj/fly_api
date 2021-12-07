@@ -7,7 +7,7 @@
         "tags": [
           "Fcc"
         ],
-        "operationId": "ConfigListReq",
+        "operationId": "FccConfigListReq",
         "parameters": [
           {
             "type": "integer",
@@ -76,7 +76,7 @@
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/PrePublishReq"
+              "$ref": "#/definitions/FccPrePublishReq"
             }
           }
         ],
@@ -114,7 +114,7 @@
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/PublishReq"
+              "$ref": "#/definitions/FccPublishReq"
             }
           }
         ],
@@ -150,7 +150,7 @@
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/SaveConfigReq"
+              "$ref": "#/definitions/FccSaveConfigReq"
             }
           }
         ],
@@ -180,7 +180,7 @@
         "tags": [
           "Fcc"
         ],
-        "operationId": "GetConfigReq",
+        "operationId": "FccGetConfigReq",
         "parameters": [
           {
             "type": "string",
@@ -229,7 +229,7 @@
         "tags": [
           "Fcc"
         ],
-        "operationId": "GroupListReq",
+        "operationId": "FccGroupListReq",
         "parameters": [
           {
             "type": "integer",
@@ -298,7 +298,7 @@
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/SaveGroupReq"
+              "$ref": "#/definitions/FccSaveGroupReq"
             }
           }
         ],
@@ -328,7 +328,7 @@
         "tags": [
           "Fcc"
         ],
-        "operationId": "ProjectListReq",
+        "operationId": "FccProjectListReq",
         "parameters": [
           {
             "type": "integer",
@@ -391,7 +391,7 @@
             "name": "body",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/SaveProjectReq"
+              "$ref": "#/definitions/FccSaveProjectReq"
             }
           }
         ],
@@ -408,6 +408,427 @@
                   "properties": {
                     "data": {
                       "$ref": "#/definitions/FetchGroupsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/group/list/": {
+      "get": {
+        "description": "Get group list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "StarlingGroupListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupKey",
+            "name": "group_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupName",
+            "name": "group_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchGroupsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/group/save/": {
+      "post": {
+        "description": "Get group list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "CommonReq",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/StarlingSaveGroupReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/origin/list/": {
+      "get": {
+        "description": "Get config list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "StarlingOriginLgListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupKey",
+            "name": "group_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "LangKey",
+            "name": "conf_key",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchOriginLgsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/origin/save/": {
+      "post": {
+        "description": "Get group list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "CommonReq",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/StarlingSaveOriginLgReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/project/list/": {
+      "get": {
+        "description": "Get project list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "StarlingProjectListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectName",
+            "name": "project_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchProjectsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/project/save/": {
+      "post": {
+        "description": "Get group list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "CommonReq",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/StarlingSaveProjectReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchGroupsRet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/translate/save/": {
+      "post": {
+        "description": "Get group list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "CommonReq",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/StarlingSaveTransLgReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/translation/": {
+      "get": {
+        "description": "Get project list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "StarlingGetTransLgReq",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/TransLg"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/starling/translation/list/": {
+      "get": {
+        "description": "Get config list",
+        "tags": [
+          "Starling"
+        ],
+        "operationId": "StarlingTransLgListReq",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupKey",
+            "name": "group_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "LangKey",
+            "name": "lang_key",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/FetchTransLgsRet"
                     }
                   }
                 }
@@ -447,7 +868,7 @@
           "x-go-name": "Msg"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "Config": {
       "type": "object",
@@ -483,6 +904,123 @@
         }
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FccPrePublishReq": {
+      "type": "object",
+      "properties": {
+        "conf_key": {
+          "type": "string",
+          "x-go-name": "ConfKey"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "pre_value": {
+          "type": "string",
+          "x-go-name": "PreValue"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_api/models"
+    },
+    "FccPublishReq": {
+      "type": "object",
+      "properties": {
+        "conf_key": {
+          "type": "string",
+          "x-go-name": "ConfKey"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_api/models"
+    },
+    "FccSaveConfigReq": {
+      "type": "object",
+      "properties": {
+        "conf_key": {
+          "type": "string",
+          "x-go-name": "ConfKey"
+        },
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_api/models"
+    },
+    "FccSaveGroupReq": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "group_name": {
+          "type": "string",
+          "x-go-name": "GroupName"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_api/models"
+    },
+    "FccSaveProjectReq": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "project_name": {
+          "type": "string",
+          "x-go-name": "ProjectName"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_api/models"
     },
     "FetchConfigRequest": {
       "type": "object",
@@ -600,7 +1138,7 @@
           "x-go-name": "ProjectKey"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchGroupsResponse": {
       "type": "object",
@@ -631,6 +1169,67 @@
         }
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "FetchOriginLgsRequest": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-go-name": "Filter"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Offset"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchOriginLgsResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/FetchOriginLgsRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchOriginLgsRet": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OriginLg"
+          },
+          "x-go-name": "List"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchProjectsRequest": {
       "type": "object",
@@ -683,7 +1282,106 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchTransLgRequest": {
+      "type": "object",
+      "properties": {
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "lang": {
+          "type": "string",
+          "x-go-name": "Lang"
+        },
+        "lang_key": {
+          "type": "string",
+          "x-go-name": "LangKey"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchTransLgResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/TransLg"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchTransLgsRequest": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-go-name": "Filter"
+        },
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "lang_key": {
+          "type": "string",
+          "x-go-name": "LangKey"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Limit"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Offset"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchTransLgsResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        },
+        "data": {
+          "$ref": "#/definitions/FetchTransLgsRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "FetchTransLgsRet": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransLg"
+          },
+          "x-go-name": "List"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "Group": {
       "type": "object",
@@ -712,27 +1410,36 @@
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
-    "PrePublishReq": {
+    "OriginLg": {
       "type": "object",
       "properties": {
-        "conf_key": {
-          "type": "string",
-          "x-go-name": "ConfKey"
-        },
         "group_key": {
           "type": "string",
           "x-go-name": "GroupKey"
         },
-        "pre_value": {
+        "lang": {
           "type": "string",
-          "x-go-name": "PreValue"
+          "x-go-name": "Lang"
+        },
+        "lang_key": {
+          "type": "string",
+          "x-go-name": "LangKey"
+        },
+        "origin_text": {
+          "type": "string",
+          "x-go-name": "OriginText"
         },
         "project_key": {
           "type": "string",
           "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
         }
       },
-      "x-go-package": "github.com/qudj/fly_api/models"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "PrePublishRequest": {
       "type": "object",
@@ -790,25 +1497,7 @@
           "x-go-name": "Status"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
-    },
-    "PublishReq": {
-      "type": "object",
-      "properties": {
-        "conf_key": {
-          "type": "string",
-          "x-go-name": "ConfKey"
-        },
-        "group_key": {
-          "type": "string",
-          "x-go-name": "GroupKey"
-        },
-        "project_key": {
-          "type": "string",
-          "x-go-name": "ProjectKey"
-        }
-      },
-      "x-go-package": "github.com/qudj/fly_api/models"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "PublishRequest": {
       "type": "object",
@@ -841,33 +1530,6 @@
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
-    "SaveConfigReq": {
-      "type": "object",
-      "properties": {
-        "conf_key": {
-          "type": "string",
-          "x-go-name": "ConfKey"
-        },
-        "description": {
-          "type": "string",
-          "x-go-name": "Description"
-        },
-        "group_key": {
-          "type": "string",
-          "x-go-name": "GroupKey"
-        },
-        "project_key": {
-          "type": "string",
-          "x-go-name": "ProjectKey"
-        },
-        "status": {
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Status"
-        }
-      },
-      "x-go-package": "github.com/qudj/fly_api/models"
-    },
     "SaveConfigRequest": {
       "type": "object",
       "properties": {
@@ -890,7 +1552,95 @@
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
-    "SaveGroupReq": {
+    "SaveGroupRequest": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "$ref": "#/definitions/Group"
+        },
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "SaveGroupResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+    },
+    "SaveOriginLgRequest": {
+      "type": "object",
+      "properties": {
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "origin_lang": {
+          "$ref": "#/definitions/OriginLg"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "SaveOriginLgResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "SaveProjectRequest": {
+      "type": "object",
+      "properties": {
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "project": {
+          "$ref": "#/definitions/Project"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "SaveProjectResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "SaveTransLgRequest": {
+      "type": "object",
+      "properties": {
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "trans_lang": {
+          "$ref": "#/definitions/TransLg"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "SaveTransLgResponse": {
+      "type": "object",
+      "properties": {
+        "base_ret": {
+          "$ref": "#/definitions/BaseRet"
+        }
+      },
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+    },
+    "StarlingSaveGroupReq": {
       "type": "object",
       "properties": {
         "description": {
@@ -917,29 +1667,38 @@
       },
       "x-go-package": "github.com/qudj/fly_api/models"
     },
-    "SaveGroupRequest": {
+    "StarlingSaveOriginLgReq": {
       "type": "object",
       "properties": {
-        "group": {
-          "$ref": "#/definitions/Group"
-        },
-        "op_id": {
+        "group_key": {
           "type": "string",
-          "x-go-name": "OpId"
+          "x-go-name": "GroupKey"
+        },
+        "lang": {
+          "type": "string",
+          "x-go-name": "Lang"
+        },
+        "lang_key": {
+          "type": "string",
+          "x-go-name": "LangKey"
+        },
+        "origin_text": {
+          "type": "string",
+          "x-go-name": "OriginText"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_api/models"
     },
-    "SaveGroupResponse": {
-      "type": "object",
-      "properties": {
-        "base_ret": {
-          "$ref": "#/definitions/BaseRet"
-        }
-      },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
-    },
-    "SaveProjectReq": {
+    "StarlingSaveProjectReq": {
       "type": "object",
       "properties": {
         "description": {
@@ -962,27 +1721,67 @@
       },
       "x-go-package": "github.com/qudj/fly_api/models"
     },
-    "SaveProjectRequest": {
+    "StarlingSaveTransLgReq": {
       "type": "object",
       "properties": {
-        "op_id": {
+        "group_key": {
           "type": "string",
-          "x-go-name": "OpId"
+          "x-go-name": "GroupKey"
         },
-        "project": {
-          "$ref": "#/definitions/Project"
+        "lang": {
+          "type": "string",
+          "x-go-name": "Lang"
+        },
+        "lang_key": {
+          "type": "string",
+          "x-go-name": "LangKey"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        },
+        "translate_text": {
+          "type": "string",
+          "x-go-name": "TranslateText"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_api/models"
     },
-    "SaveProjectResponse": {
+    "TransLg": {
       "type": "object",
       "properties": {
-        "base_ret": {
-          "$ref": "#/definitions/BaseRet"
+        "group_key": {
+          "type": "string",
+          "x-go-name": "GroupKey"
+        },
+        "lang": {
+          "type": "string",
+          "x-go-name": "Lang"
+        },
+        "lang_key": {
+          "type": "string",
+          "x-go-name": "LangKey"
+        },
+        "project_key": {
+          "type": "string",
+          "x-go-name": "ProjectKey"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Status"
+        },
+        "translate_text": {
+          "type": "string",
+          "x-go-name": "TranslateText"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     }
   }
 }

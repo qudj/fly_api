@@ -22,18 +22,34 @@ func initRouter(r *gin.Engine) {
 	fcc := r.Group("/fcc")
 	//fcc.Use(middlewares.AuthRequired)
 	{
-		fcc.GET("/project/list/", handler.ProjectList)
-		fcc.GET("/group/list/", handler.GroupList)
-		fcc.GET("/config/list/", handler.ConfigList)
+		fcc.GET("/project/list/", handler.FccProjectList)
+		fcc.GET("/group/list/", handler.FccGroupList)
+		fcc.GET("/config/list/", handler.FccConfigList)
 
-		fcc.POST("/project/save/", handler.SaveProject)
-		fcc.POST("/group/save/", handler.SaveGroup)
-		fcc.POST("/config/save/", handler.SaveConfig)
+		fcc.POST("/project/save/", handler.FccSaveProject)
+		fcc.POST("/group/save/", handler.FccSaveGroup)
+		fcc.POST("/config/save/", handler.FccSaveConfig)
 
-		fcc.POST("/config/pre_publish/", handler.PrePublish)
-		fcc.POST("/config/publish/", handler.Publish)
+		fcc.POST("/config/pre_publish/", handler.FccPrePublish)
+		fcc.POST("/config/publish/", handler.FccPublish)
 
-		fcc.GET("/config/value", handler.GetConfig)
+		fcc.GET("/config/value", handler.FccGetConfig)
+	}
+
+	starling := r.Group("/starling")
+	//fcc.Use(middlewares.AuthRequired)
+	{
+		starling.GET("/project/list/", handler.StarlingProjectList)
+		starling.GET("/group/list/", handler.StarlingGroupList)
+		starling.GET("/origin/list/", handler.StarlingOriginLgList)
+		starling.GET("/translation/list/", handler.StarlingTransLgList)
+
+		starling.POST("/project/save/", handler.StarlingSaveProject)
+		starling.POST("/group/save/", handler.StarlingSaveGroup)
+		starling.POST("/origin/save/", handler.StarlingSaveOriginLg)
+		starling.POST("/translation/save/", handler.StarlingSaveTransLg)
+
+		starling.GET("/translation", handler.StarlingGetTranslation)
 	}
 }
 

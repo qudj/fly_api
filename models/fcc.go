@@ -1,7 +1,7 @@
 package models
 
-// swagger:parameters ProjectListReq
-type ProjectListReq struct {
+// swagger:parameters FccProjectListReq
+type FccProjectListReq struct {
 	// in:query
 	Limit       int64  `json:"limit" form:"limit" binding:"required"`
 	Offset      int64  `json:"offset" form:"offset"`
@@ -9,8 +9,8 @@ type ProjectListReq struct {
 	ProjectName string `json:"project_name" form:"project_name"`
 }
 
-// swagger:parameters GroupListReq
-type GroupListReq struct {
+// swagger:parameters FccGroupListReq
+type FccGroupListReq struct {
 	// in:query
 	Limit      int64  `json:"limit" form:"limit" binding:"required"`
 	Offset     int64  `json:"offset" form:"offset"`
@@ -19,8 +19,8 @@ type GroupListReq struct {
 	GroupName  string `json:"group_name" form:"group_name"`
 }
 
-// swagger:parameters ConfigListReq
-type ConfigListReq struct {
+// swagger:parameters FccConfigListReq
+type FccConfigListReq struct {
 	// in:query
 	Limit      int64  `json:"limit" form:"limit" binding:"required"`
 	Offset     int64  `json:"offset" form:"offset"`
@@ -29,24 +29,24 @@ type ConfigListReq struct {
 	ConfKey    string `json:"conf_key" form:"conf_key"`
 }
 
-// swagger:parameters GetConfigReq
-type GetConfigReq struct {
+// swagger:parameters FccGetConfigReq
+type FccGetConfigReq struct {
 	// in:query
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
 	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
 }
 
-// swagger:model SaveProjectReq
-type SaveProjectReq struct {
+// swagger:model FccSaveProjectReq
+type FccSaveProjectReq struct {
 	ProjectKey  string `json:"project_key" form:"project_key" binding:"required"`
 	ProjectName string `json:"project_name" form:"project_name"`
 	Description string `json:"description,omitempty" form:"description"`
 	Status      int64  `json:"status,omitempty" form:"status"`
 }
 
-// swagger:model SaveGroupReq
-type SaveGroupReq struct {
+// swagger:model FccSaveGroupReq
+type FccSaveGroupReq struct {
 	ProjectKey  string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey    string `json:"group_key" form:"group_key" binding:"required"`
 	GroupName   string `json:"group_name,omitempty" form:"group_name"`
@@ -54,8 +54,8 @@ type SaveGroupReq struct {
 	Status      int64  `json:"status,omitempty" form:"status"`
 }
 
-// swagger:model SaveConfigReq
-type SaveConfigReq struct {
+// swagger:model FccSaveConfigReq
+type FccSaveConfigReq struct {
 	ProjectKey  string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey    string `json:"group_key" form:"group_key" binding:"required"`
 	ConfKey     string `json:"conf_key" form:"conf_key" binding:"required"`
@@ -63,16 +63,16 @@ type SaveConfigReq struct {
 	Status      int64  `json:"status,omitempty" form:"status"`
 }
 
-// swagger:model PrePublishReq
-type PrePublishReq struct {
+// swagger:model FccPrePublishReq
+type FccPrePublishReq struct {
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
 	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`
 	PreValue   string `json:"pre_value" form:"pre_value" binding:"required"`
 }
 
-// swagger:model PublishReq
-type PublishReq struct {
+// swagger:model FccPublishReq
+type FccPublishReq struct {
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
 	GroupKey   string `json:"group_key" form:"group_key" binding:"required"`
 	ConfKey    string `json:"conf_key" form:"conf_key" binding:"required"`

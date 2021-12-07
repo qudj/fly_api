@@ -9,6 +9,7 @@ type Config struct {
 	Name string `mapstructure:"name"`
 	Host struct {
 		FccRpcHost string `mapstructure:"fcc_rpc_host"`
+		StarlingRpcHost string `mapstructure:"starling_rpc_host"`
 	} `mapstructure:"host"`
 }
 
