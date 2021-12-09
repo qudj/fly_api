@@ -286,6 +286,8 @@ github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:
 github.com/quasoft/memstore v0.0.0-20191010062613-2bce066d2b0b/go.mod h1:wTPjTepVu7uJBYgZ0SdWHQlIas582j6cn2jgk4DDdlg=
 github.com/qudj/fly_lib v0.0.0-20211207074023-abef03cc392c h1:PdT96v1BqGD+OkVvVRCMyaZGjIQbW4wOJchzPU4nLKE=
 github.com/qudj/fly_lib v0.0.0-20211207074023-abef03cc392c/go.mod h1:2tuBBofcsINAXbvu8IgOWzP5oROzA5YxhmoCFpugQfM=
+github.com/qudj/fly_lib v0.0.0-20211209061713-78c0255a7574 h1:k9VQUgsGlNe+rUYix36UEfLxItSoRaEjxdW1c1KZNfQ=
+github.com/qudj/fly_lib v0.0.0-20211209061713-78c0255a7574/go.mod h1:4YZuyql3Ag17Y7BxyqakYyKg/u5EwEahRtbhkgXjF7o=
 github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5 h1:mZHayPoR0lNmnHyvtYjDeq0zlVHn9K/ZXoy17ylucdo=
 github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5/go.mod h1:GEXHk5HgEKCvEIIrSpFI3ozzG5xOKA2DVlEX/gGnewM=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=

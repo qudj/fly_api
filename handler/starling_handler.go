@@ -7,6 +7,7 @@ import (
 	"github.com/qudj/fly_api/models"
 	servbp "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
 	"net/http"
+	"strings"
 )
 
 func StarlingProjectList(c *gin.Context) {
@@ -386,13 +387,13 @@ func StarlingGetTranslation(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
-	req := &servbp.FetchTransLgRequest{
+	req := &servbp.FetchTransLgsByKeyRequest{
 		ProjectKey: param.ProjectKey,
 		GroupKey:   param.GroupKey,
-		LangKey:    param.LangKey,
+		LangKeys:   strings.Split(param.LangKey, ","),
 		Lang:       param.Lang,
 	}
-	res, err := config.StarlingRpcClient.FetchTransLg(c, req)
+	res, err := config.StarlingRpcClient.FetchTransLgsByKey(c, req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return

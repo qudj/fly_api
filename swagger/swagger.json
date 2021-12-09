@@ -753,6 +753,32 @@
           "Starling"
         ],
         "operationId": "StarlingGetTransLgReq",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "ProjectKey",
+            "name": "project_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "GroupKey",
+            "name": "group_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "LangKey",
+            "name": "lang_key",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Lang",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "success",
@@ -892,6 +918,11 @@
         "project_key": {
           "type": "string",
           "x-go-name": "ProjectKey"
+        },
+        "publish_status": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "PublishStatus"
         },
         "status": {
           "type": "integer",
@@ -1138,7 +1169,7 @@
           "x-go-name": "ProjectKey"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
     "FetchGroupsResponse": {
       "type": "object",
@@ -1150,7 +1181,7 @@
           "$ref": "#/definitions/FetchGroupsRet"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchGroupsRet": {
       "type": "object",
@@ -1252,7 +1283,7 @@
           "x-go-name": "Offset"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchProjectsResponse": {
       "type": "object",
@@ -1264,7 +1295,7 @@
           "$ref": "#/definitions/FetchProjectsRet"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchProjectsRet": {
       "type": "object",
@@ -1284,7 +1315,7 @@
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
-    "FetchTransLgRequest": {
+    "FetchTransLgsByKeyRequest": {
       "type": "object",
       "properties": {
         "group_key": {
@@ -1295,9 +1326,12 @@
           "type": "string",
           "x-go-name": "Lang"
         },
-        "lang_key": {
-          "type": "string",
-          "x-go-name": "LangKey"
+        "lang_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "LangKeys"
         },
         "project_key": {
           "type": "string",
@@ -1306,14 +1340,18 @@
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
-    "FetchTransLgResponse": {
+    "FetchTransLgsByKeyResponse": {
       "type": "object",
       "properties": {
         "base_ret": {
           "$ref": "#/definitions/BaseRet"
         },
         "data": {
-          "$ref": "#/definitions/TransLg"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransLg"
+          },
+          "x-go-name": "Data"
         }
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
@@ -1497,7 +1535,7 @@
           "x-go-name": "Status"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
     "PublishRequest": {
       "type": "object",
@@ -1563,7 +1601,7 @@
           "x-go-name": "OpId"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
     "SaveGroupResponse": {
       "type": "object",

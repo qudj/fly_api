@@ -39,7 +39,7 @@ type StarlingTransLgListReq struct {
 	LangKey    string `json:"lang_key" form:"lang_key"`
 }
 
-// swagger:parameters StarlingGetConfigReq
+// swagger:parameters StarlingGetTransLgReq
 type StarlingGetTransLgReq struct {
 	// in:query
 	ProjectKey string `json:"project_key" form:"project_key" binding:"required"`
