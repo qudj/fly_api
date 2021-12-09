@@ -54,6 +54,7 @@ type StarlingSaveProjectReq struct {
 	ProjectName string `json:"project_name" form:"project_name"`
 	Description string `json:"description,omitempty" form:"description"`
 	Status      int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }
 
 // swagger:model StarlingSaveGroupReq
@@ -63,6 +64,7 @@ type StarlingSaveGroupReq struct {
 	GroupName   string `json:"group_name,omitempty" form:"group_name"`
 	Description string `json:"description,omitempty" form:"description"`
 	Status      int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }
 
 // swagger:model StarlingSaveOriginLgReq
@@ -73,6 +75,7 @@ type StarlingSaveOriginLgReq struct {
 	Lang       string `json:"lang" form:"lang" binding:"required"`
 	OriginText string `json:"origin_text,omitempty" form:"origin_text"`
 	Status     int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }
 
 // swagger:model StarlingSaveTransLgReq
@@ -83,4 +86,5 @@ type StarlingSaveTransLgReq struct {
 	Lang          string `json:"lang" form:"lang" binding:"required"`
 	TranslateText string `json:"translate_text,omitempty" form:"translate_text"`
 	Status        int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }

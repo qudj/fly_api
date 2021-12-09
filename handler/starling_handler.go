@@ -206,6 +206,7 @@ func StarlingSaveProject(c *gin.Context) {
 			Status:      param.Status,
 		},
 		OpId: "qudongjie",
+		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveProject(c, req)
 	if err != nil {
@@ -254,6 +255,7 @@ func StarlingSaveGroup(c *gin.Context) {
 			Status:      param.Status,
 		},
 		OpId: "qudongjie",
+		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveGroup(c, req)
 	if err != nil {
@@ -303,6 +305,7 @@ func StarlingSaveOriginLg(c *gin.Context) {
 			Status:     param.Status,
 		},
 		OpId: "qudongjie",
+		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveOriginLg(c, req)
 	if err != nil {
@@ -352,6 +355,7 @@ func StarlingSaveTransLg(c *gin.Context) {
 			Status:        param.Status,
 		},
 		OpId: "qudongjie",
+		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveTransLg(c, req)
 	if err != nil {

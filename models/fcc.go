@@ -43,6 +43,7 @@ type FccSaveProjectReq struct {
 	ProjectName string `json:"project_name" form:"project_name"`
 	Description string `json:"description,omitempty" form:"description"`
 	Status      int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }
 
 // swagger:model FccSaveGroupReq
@@ -52,6 +53,7 @@ type FccSaveGroupReq struct {
 	GroupName   string `json:"group_name,omitempty" form:"group_name"`
 	Description string `json:"description,omitempty" form:"description"`
 	Status      int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }
 
 // swagger:model FccSaveConfigReq
@@ -61,6 +63,7 @@ type FccSaveConfigReq struct {
 	ConfKey     string `json:"conf_key" form:"conf_key" binding:"required"`
 	Description string `json:"description,omitempty" form:"description"`
 	Status      int64  `json:"status,omitempty" form:"status"`
+	SaveMode    int64  `json:"save_mode" form:"save_mode" binding:"required"`
 }
 
 // swagger:model FccPrePublishReq
