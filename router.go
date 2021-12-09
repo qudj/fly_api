@@ -9,11 +9,10 @@ import (
 
 
 func initRouter(r *gin.Engine) {
-	// health check
+	r.Use(middlewares.SetTraceId)
 	r.Use(middlewares.InitSession())
 
 	r.GET("health_check", healthCheck)
-
 	{
 		r.Static("doc/swagger_ui", "./swagger_ui")
 		r.Static("doc/swagger", "./swagger")
