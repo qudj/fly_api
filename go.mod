@@ -6,7 +6,7 @@ require (
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-gonic/gin v1.7.7
 	github.com/lestrrat/go-file-rotatelogs v0.0.0-20180223000712-d3151e2a480f
-	github.com/qudj/fly_lib v0.0.0-20211209135508-612ca9429ab5
+	github.com/qudj/fly_lib v0.0.0-20211210034518-04d7d976c357
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
 	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.8.1

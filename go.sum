@@ -290,6 +290,8 @@ github.com/qudj/fly_lib v0.0.0-20211209061713-78c0255a7574 h1:k9VQUgsGlNe+rUYix3
 github.com/qudj/fly_lib v0.0.0-20211209061713-78c0255a7574/go.mod h1:4YZuyql3Ag17Y7BxyqakYyKg/u5EwEahRtbhkgXjF7o=
 github.com/qudj/fly_lib v0.0.0-20211209135508-612ca9429ab5 h1:y4YkDXTYXJeOdZKmowANuJYziwOQYkJxiTykxskdG7Y=
 github.com/qudj/fly_lib v0.0.0-20211209135508-612ca9429ab5/go.mod h1:4YZuyql3Ag17Y7BxyqakYyKg/u5EwEahRtbhkgXjF7o=
+github.com/qudj/fly_lib v0.0.0-20211210034518-04d7d976c357 h1:6rsQjuOD305YtCxODkLLNVNT0xaBDof2UIP2oqKi9aU=
+github.com/qudj/fly_lib v0.0.0-20211210034518-04d7d976c357/go.mod h1:4YZuyql3Ag17Y7BxyqakYyKg/u5EwEahRtbhkgXjF7o=
 github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5 h1:mZHayPoR0lNmnHyvtYjDeq0zlVHn9K/ZXoy17ylucdo=
 github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5/go.mod h1:GEXHk5HgEKCvEIIrSpFI3ozzG5xOKA2DVlEX/gGnewM=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=

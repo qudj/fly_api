@@ -903,6 +903,11 @@
           "type": "string",
           "x-go-name": "ConfKey"
         },
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreateTime"
+        },
         "description": {
           "type": "string",
           "x-go-name": "Description"
@@ -910,6 +915,14 @@
         "group_key": {
           "type": "string",
           "x-go-name": "GroupKey"
+        },
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
         },
         "pre_value": {
           "type": "string",
@@ -928,6 +941,11 @@
           "type": "integer",
           "format": "int64",
           "x-go-name": "Status"
+        },
+        "update_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdateTime"
         },
         "value": {
           "type": "string",
@@ -1184,7 +1202,7 @@
           "x-go-name": "ProjectKey"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchGroupsResponse": {
       "type": "object",
@@ -1196,7 +1214,7 @@
           "$ref": "#/definitions/FetchGroupsRet"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchGroupsRet": {
       "type": "object",
@@ -1214,7 +1232,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchOriginLgsRequest": {
       "type": "object",
@@ -1298,7 +1316,7 @@
           "x-go-name": "Offset"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "FetchProjectsResponse": {
       "type": "object",
@@ -1328,7 +1346,7 @@
           "x-go-name": "Total"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
     "FetchTransLgsByKeyRequest": {
       "type": "object",
@@ -1439,6 +1457,11 @@
     "Group": {
       "type": "object",
       "properties": {
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreateTime"
+        },
         "description": {
           "type": "string",
           "x-go-name": "Description"
@@ -1451,6 +1474,14 @@
           "type": "string",
           "x-go-name": "GroupName"
         },
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
+        },
         "project_key": {
           "type": "string",
           "x-go-name": "ProjectKey"
@@ -1459,6 +1490,11 @@
           "type": "integer",
           "format": "int64",
           "x-go-name": "Status"
+        },
+        "update_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdateTime"
         }
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
@@ -1466,6 +1502,11 @@
     "OriginLg": {
       "type": "object",
       "properties": {
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreateTime"
+        },
         "group_key": {
           "type": "string",
           "x-go-name": "GroupKey"
@@ -1477,6 +1518,14 @@
         "lang_key": {
           "type": "string",
           "x-go-name": "LangKey"
+        },
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
         },
         "origin_text": {
           "type": "string",
@@ -1490,6 +1539,11 @@
           "type": "integer",
           "format": "int64",
           "x-go-name": "Status"
+        },
+        "update_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdateTime"
         }
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
@@ -1508,6 +1562,10 @@
         "op_id": {
           "type": "string",
           "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
         },
         "pre_value": {
           "type": "string",
@@ -1532,9 +1590,22 @@
     "Project": {
       "type": "object",
       "properties": {
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreateTime"
+        },
         "description": {
           "type": "string",
           "x-go-name": "Description"
+        },
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
         },
         "project_key": {
           "type": "string",
@@ -1548,9 +1619,14 @@
           "type": "integer",
           "format": "int64",
           "x-go-name": "Status"
+        },
+        "update_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdateTime"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "PublishRequest": {
       "type": "object",
@@ -1566,6 +1642,10 @@
         "op_id": {
           "type": "string",
           "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
         },
         "project_key": {
           "type": "string",
@@ -1589,10 +1669,6 @@
         "config": {
           "$ref": "#/definitions/Config"
         },
-        "op_id": {
-          "type": "string",
-          "x-go-name": "OpId"
-        },
         "save_mode": {
           "$ref": "#/definitions/SaveMode"
         }
@@ -1614,10 +1690,6 @@
         "group": {
           "$ref": "#/definitions/Group"
         },
-        "op_id": {
-          "type": "string",
-          "x-go-name": "OpId"
-        },
         "save_mode": {
           "$ref": "#/definitions/SaveMode"
         }
@@ -1631,7 +1703,7 @@
           "$ref": "#/definitions/BaseRet"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
     },
     "SaveMode": {
       "type": "integer",
@@ -1641,10 +1713,6 @@
     "SaveOriginLgRequest": {
       "type": "object",
       "properties": {
-        "op_id": {
-          "type": "string",
-          "x-go-name": "OpId"
-        },
         "origin_lang": {
           "$ref": "#/definitions/OriginLg"
         },
@@ -1666,10 +1734,6 @@
     "SaveProjectRequest": {
       "type": "object",
       "properties": {
-        "op_id": {
-          "type": "string",
-          "x-go-name": "OpId"
-        },
         "project": {
           "$ref": "#/definitions/Project"
         },
@@ -1686,15 +1750,11 @@
           "$ref": "#/definitions/BaseRet"
         }
       },
-      "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"
+      "x-go-package": "github.com/qudj/fly_lib/models/proto/fcc_serv"
     },
     "SaveTransLgRequest": {
       "type": "object",
       "properties": {
-        "op_id": {
-          "type": "string",
-          "x-go-name": "OpId"
-        },
         "save_mode": {
           "$ref": "#/definitions/SaveMode"
         },
@@ -1848,6 +1908,11 @@
     "TransLg": {
       "type": "object",
       "properties": {
+        "create_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreateTime"
+        },
         "group_key": {
           "type": "string",
           "x-go-name": "GroupKey"
@@ -1859,6 +1924,14 @@
         "lang_key": {
           "type": "string",
           "x-go-name": "LangKey"
+        },
+        "op_id": {
+          "type": "string",
+          "x-go-name": "OpId"
+        },
+        "op_name": {
+          "type": "string",
+          "x-go-name": "OpName"
         },
         "project_key": {
           "type": "string",
@@ -1872,6 +1945,11 @@
         "translate_text": {
           "type": "string",
           "x-go-name": "TranslateText"
+        },
+        "update_time": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdateTime"
         }
       },
       "x-go-package": "github.com/qudj/fly_lib/models/proto/fly_starling_serv"

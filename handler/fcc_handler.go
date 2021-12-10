@@ -165,8 +165,9 @@ func FccSaveProject(c *gin.Context) {
 			ProjectName: param.ProjectName,
 			Description: param.Description,
 			Status:      param.Status,
+			OpId:        "qudongjie",
+			OpName:      "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: fcc_serv.SaveMode(param.SaveMode),
 	}
 	res, err := config.FccRpcClient.SaveProject(c, req)
@@ -214,8 +215,9 @@ func FccSaveGroup(c *gin.Context) {
 			GroupName:   param.GroupName,
 			Description: param.Description,
 			Status:      param.Status,
+			OpId:        "qudongjie",
+			OpName:      "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: fcc_serv.SaveMode(param.SaveMode),
 	}
 	res, err := config.FccRpcClient.SaveGroup(c, req)
@@ -263,8 +265,9 @@ func FccSaveConfig(c *gin.Context) {
 			ConfKey:     param.ConfKey,
 			Description: param.Description,
 			Status:      param.Status,
+			OpId:        "qudongjie",
+			OpName:      "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: fcc_serv.SaveMode(param.SaveMode),
 	}
 	res, err := config.FccRpcClient.SaveConfig(c, req)

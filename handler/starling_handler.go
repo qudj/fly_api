@@ -204,8 +204,9 @@ func StarlingSaveProject(c *gin.Context) {
 			ProjectName: param.ProjectName,
 			Description: param.Description,
 			Status:      param.Status,
+			OpId:        "qudongjie",
+			OpName:      "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveProject(c, req)
@@ -253,8 +254,9 @@ func StarlingSaveGroup(c *gin.Context) {
 			GroupName:   param.GroupName,
 			Description: param.Description,
 			Status:      param.Status,
+			OpId:        "qudongjie",
+			OpName:      "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveGroup(c, req)
@@ -303,8 +305,9 @@ func StarlingSaveOriginLg(c *gin.Context) {
 			Lang:       param.Lang,
 			OriginText: param.OriginText,
 			Status:     param.Status,
+			OpId:       "qudongjie",
+			OpName:     "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveOriginLg(c, req)
@@ -353,8 +356,9 @@ func StarlingSaveTransLg(c *gin.Context) {
 			Lang:          param.Lang,
 			TranslateText: param.TranslateText,
 			Status:        param.Status,
+			OpId:          "qudongjie",
+			OpName:        "qudongjie",
 		},
-		OpId: "qudongjie",
 		SaveMode: servbp.SaveMode(param.SaveMode),
 	}
 	res, err := config.StarlingRpcClient.SaveTransLg(c, req)
